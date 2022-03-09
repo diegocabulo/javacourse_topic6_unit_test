@@ -1,5 +1,6 @@
 package com.testpractice.unittest.service;
 
+import com.testpractice.unittest.exception.InvalidTargetFundsException;
 import com.testpractice.unittest.model.Account;
 import onlinepay.exception.InsufficientFundsException;
 
@@ -28,9 +29,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Boolean checkFundsCurrentAccount(Account destinationAccount, Double transferAmount)
-            throws InsufficientFundsException{
+            throws InvalidTargetFundsException {
         if(destinationAccount.getIsCurrentAccount() && destinationAccount.getAccountBalance() > 3d * transferAmount){
-            throw new  InsufficientFundsException(CURRENT_ACCOUNT_HAVE_MORE_THAN);
+            throw new  InvalidTargetFundsException(CURRENT_ACCOUNT_HAVE_MORE_THAN);
         }
         else {
             return true;

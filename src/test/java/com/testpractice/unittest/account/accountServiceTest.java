@@ -1,5 +1,6 @@
 package com.testpractice.unittest.account;
 
+import com.testpractice.unittest.exception.InvalidTargetFundsException;
 import com.testpractice.unittest.service.AccountServiceImpl;
 import com.testpractice.unittest.model.Account;
 import onlinepay.exception.InsufficientFundsException;
@@ -67,7 +68,7 @@ public class accountServiceTest {
         Account destinationAccount = generateAccount("test2", "name2", 123,
                 40000d, true, 6L, "testBank2");
 
-        InsufficientFundsException ex = Assertions.assertThrows(InsufficientFundsException.class,
+        InvalidTargetFundsException ex = Assertions.assertThrows(InvalidTargetFundsException.class,
                 ()-> accountService.checkFundsCurrentAccount(destinationAccount,10000d));
 
         Assertions.assertEquals(AccountServiceImpl.CURRENT_ACCOUNT_HAVE_MORE_THAN,
